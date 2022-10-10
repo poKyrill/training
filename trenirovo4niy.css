@@ -1,0 +1,248 @@
+/* 
+- использовать флоат
+- позиция релатив/абсолют
+- items-align-center
+- @media +2
+- адаптивная
+- с созданием псевдоэлемента для 
+чекбокса с доп картинкой
+- before/after
+- пагинация
+ */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+*::after,
+::before {
+    box-sizing: border-box;
+}
+
+a {
+    font-family: 'Dosis', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    /* height: 100vh; */
+    margin: 0 auto;
+}
+
+/* Header */
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: yellowgreen;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.header {
+    background: url(./img/bg.jpg) no-repeat;
+    background-size: 850px 60px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+}
+
+.logo {
+    background: url(./img/Logo.png) no-repeat center;
+    background-size: cover;
+    width: 30px;
+    height: 40px;
+    margin: 10px 10px 0 45%;
+    display: inline-block;
+}
+
+/* nav */
+nav a {
+    text-decoration: none;
+    color: rgb(62, 29, 33);
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid rgb(209, 103, 103);
+    border-radius: 10px;
+    outline: 2px solid rgba(252, 110, 247, 0.292);
+    margin-right: 5px;
+    position: relative;  /* специально чтобы работал позишын абсолют у ребёнка */
+    
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+nav a:hover {
+    background-color: aqua;
+    transition: background-color .2s linear;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    opacity: 1;
+}
+
+nav a::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fb43dc;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .2s linear;
+}
+
+/* form */
+fieldset {
+    border: 4px solid;
+    border-color: rgba(255, 174, 0, 0.332);
+    width: 50%;
+    min-width: 380px;
+}
+
+legend {
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
+
+.input_field {
+    height: 100px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.email, .password {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="email"], input[type="password"] {
+    font-style: italic;
+    border: none;
+
+    width: 200px;
+    height: 25px;
+
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+    border-radius: 4px;
+    outline: 4px solid rgba(0, 42, 255, 0.25);
+}
+
+input[type="password"] {
+    outline: 4px solid rgba(242, 255, 0, 0.454);
+}
+
+.chekbox>label:hover, .chekbox>input:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* + сделать после нажатия на чекбокс появление иконки */
+.label_checkbox::before {
+    content: "";
+    display: inline-block;
+    
+    height: 12px;
+    width: 12px;
+    border: 1px solid grey;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgb(200, 200, 200);
+    margin-right: 5px;
+}
+
+input[type="checkbox"]:hover+.label_checkbox::before {
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+input[type="checkbox"]:checked+.label_checkbox::before {
+    /* background-color: blueviolet; */
+    background: url("./img/cheked.png") no-repeat center;
+    background-size: contain;
+    width: 12px;
+    height: 12px;
+    border: none;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+input[type="reset"], input[type="submit"] {
+    background-color: lightgray;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 50px;
+    width: 60px;
+    height: 25px;
+    outline: 2px solid rgba(208, 0, 255, 0.737);
+    transition: background-color .2s linear;
+}
+
+input[type="reset"]:hover, input[type="submit"]:hover {
+    background-color: aquamarine;
+}
+input[type="reset"] {
+    margin-right: 10px;
+}
+
+/* основной контент */
+.simple_part {
+    margin-top: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+/* Footer */
+footer {
+    background-color: rgb(255, 255, 0, 0.5);
+    border: 1px solid palevioletred;
+    border-style: groove;
+    border-radius: 3px;
+    text-align: center;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    /* position: absolute; */
+    bottom: 0;
+    max-width: 850px;
+    /* width: 100%; */
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(219, 219, 219);
+    text-shadow: 1px 1px 2px black;
+    font-weight: 700;
+    font-family: 'Ms Madi', cursive;
+}
+
+footer a:hover {
+    color: chartreuse;
+    text-shadow: 1px 1px 2px rgb(149, 0, 255);
+}
